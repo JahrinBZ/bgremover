@@ -1,26 +1,46 @@
-<<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Hello</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="{% static 'hello.css' %}" />
   </head>
-  <body id="hi">
-    Hello this is my django Project {{name}} from backend end <br />
-
-    <script src="" async defer></script>
+  <body>
+    <div class="container">
+      {% if ogimage and bgrimage %}
+      <h1>Image Comparison</h1>
+      <div class="images">
+        <div>
+          <h3>Original Image</h3>
+          <img src="{{ogimage}}" alt="{{ogimage}}" />
+        </div>
+        <div>
+          <h3>Background Removed</h3>
+          <img src="{{bgrimage}}" alt="{{bgrimage}}" />
+        </div>
+      </div>
+      {%else%}
+      <h1>No Image to show</h1>
+      {% endif %}
+      <div class="upload-form">
+        <form
+          action="{% url 'home' %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <label for="image-upload">Upload an Image:</label>
+          <input
+            type="file"
+            id="image-upload"
+            name="image-upload"
+            accept="image/*"
+          />
+          <button type="submit">Upload Image</button>
+        </form>
+      </div>
+    </div>
   </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("hi").innerHTML +=
-        "Hello, this is my Django Project Rafid from the front end";
-    });
-  </script>
 </html>
