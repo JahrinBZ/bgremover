@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c1g-zfu(1ih!z@d8&gbs@lj#g=6y1g4co^ydnp4k8sqos(_ggn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -138,3 +138,10 @@ STATICFILES_DIRS = [
 # Media files (Uploaded by users)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://1bb2-103-150-254-95.ngrok-free.app',
+]

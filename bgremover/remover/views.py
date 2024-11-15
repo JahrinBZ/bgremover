@@ -37,7 +37,7 @@ def home(request):
                 os.makedirs(os.path.dirname(bgrimage_path), exist_ok=True)
 
                 # Save the processed image as a JPEG
-                output_image.save(bgrimage_path, format="JPEG")
+                output_image.save(bgrimage_path, format="PNG")
                 bgrimage_url = os.path.normpath(os.path.join(settings.MEDIA_URL, 'bgrimages', image.name)).replace("\\", "/")
 
             ogimage = og_url
